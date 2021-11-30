@@ -1,7 +1,7 @@
 import React from "react";
 import Single from "./Single";
 
-function Shop({items, addToCart}) {
+function Shop({items, addToCart, checkCart}) {
 
     return (
         <div className = "shop">
@@ -10,6 +10,7 @@ function Shop({items, addToCart}) {
                   <Single
                   key = {e.id}
                   addToCart = {addToCart}
+                  checkCart = {checkCart}
                   item = {e}/>
               )
             })}

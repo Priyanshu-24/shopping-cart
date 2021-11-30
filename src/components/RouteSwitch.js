@@ -36,12 +36,19 @@ function RouteSwitch() {
     { name: "Rottweiler", src: rottweiler, id: 12 , price: 17000},
   ];
 
+
   const [cartItem, setCartItem] = useState([]);
+  const [checkCart, setCheckCart] = useState([false, false, false, false, false, false, false, false, false, false, false, false]);  
 
   const addToCart = (e) => {
 
     let idx = cartItem.map((x) => x.id).indexOf(e.id);
+    
+    const newCheck = [...checkCart];
+    newCheck[e.id-1] = true;
+    setCheckCart(newCheck);
 
+    
     if (idx === -1)
       setCartItem(cartItem.concat({ ...e, ...{ quantity: 1 } }));
     
@@ -58,6 +65,10 @@ function RouteSwitch() {
 
     let idx = cartItem.map((x) => x.id).indexOf(e.id);
 
+    const newCheck = [...checkCart];
+    newCheck[e.id-1] = false;
+    setCheckCart(newCheck);
+
     if (idx !== -1) {
 
       const newCartItems = [...cartItem];
@@ -68,6 +79,7 @@ function RouteSwitch() {
   };
 
 
+
   return (
     <BrowserRouter>
       <Header cartItem = {cartItem}/>
@@ -76,12 +88,12 @@ function RouteSwitch() {
         <Route
           exact
           path="/shop"
-          element={<Shop items={items} addToCart={addToCart} />}
+          element={<Shop items={items} addToCart={addToCart} checkCart = {checkCart}/>}
         />
         <Route
           exact
           path="/cart"
-          element={<Cart cartItem={cartItem} removeCart={removeCart} />}
+          element={<Cart cartItem={cartItem} removeCart={removeCart} checkCart = {checkCart}/>}
         />
       </Routes>
     </BrowserRouter>
