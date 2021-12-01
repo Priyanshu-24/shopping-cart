@@ -109,3 +109,19 @@
   font-size: larger;
   font-weight: bold;
 }
+
+.cart-quantity{
+  display: flex;
+}
+
+.add-to-cart{
+  background-color: rgb(192, 187, 187);
+  font-weight: bold;
+  border-radius: 12px;
+  padding: 0 3px;
+  margin: 0 5px;
+}
+
+.add-to-cart:hover{
+  cursor: pointer;
+}

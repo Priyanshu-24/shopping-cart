@@ -78,6 +78,26 @@ function RouteSwitch() {
     }
   };
 
+  const decreaseQuantity = (item) => {
+
+    if(item.quantity === 1)
+    removeCart(item);
+
+    else{
+      let idx = cartItem.map((x) => x.id).indexOf(item.id);
+      const newCart = [...cartItem];
+      newCart[idx].quantity--;
+      setCartItem(newCart);
+    }
+
+  }
+
+  const increaseQuantity = (item) => {
+
+    addToCart(item);
+
+  }
+
 
 
   return (
@@ -93,7 +113,7 @@ function RouteSwitch() {
         <Route
           exact
           path="/cart"
-          element={<Cart cartItem={cartItem} removeCart={removeCart} checkCart = {checkCart}/>}
+          element={<Cart cartItem={cartItem} removeCart={removeCart} checkCart = {checkCart} decreaseQuantity = {decreaseQuantity} increaseQuantity = {increaseQuantity}/> }
         />
       </Routes>
     </BrowserRouter>
